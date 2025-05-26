@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import React from "react";
+import { ScrollView } from "react-native";
+import QuestionCard from "./components/QuestionCard";
+import jsQ1 from "./data/js/Question1";
+import jsQ2 from "./data/js/Question2";
 export default function App() {
+  const jsQuestions = [
+    {
+      title: "Q1",
+      code: jsQ1,
+    },
+    {
+      title: "Q2",
+      code: jsQ2,
+    },
+  ];
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ScrollView>
+      {jsQuestions.map((q, idx) => (
+        <QuestionCard key={idx} title={q.title} code={q.code} />
+      ))}
+    </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
