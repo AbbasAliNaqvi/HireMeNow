@@ -3,6 +3,8 @@ import { ScrollView } from "react-native";
 import QuestionCard from "./components/QuestionCard";
 import jsQ1 from "./data/js/Question1";
 import jsQ2 from "./data/js/Question2";
+import jsQ3 from "./data/js/Question3";
+import jsQ4 from "./data/js/Question4";
 export default function App() {
   const jsQuestions = [
     {
@@ -12,6 +14,14 @@ export default function App() {
     {
       title: "Q2",
       code: jsQ2,
+    },
+    {
+      title: "Q3",
+      code: jsQ3,
+    },
+    {
+      title: "Q4",
+      code: jsQ4,
     },
   ];
 
