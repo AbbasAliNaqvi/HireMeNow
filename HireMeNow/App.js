@@ -7,7 +7,7 @@ import jsQ3 from "./data/js/Question3";
 import jsQ4 from "./data/js/Question4";
 import jsQ5 from "./data/js/Question5";
 import jsQ6 from "./data/js/Question6";
-
+import jsQ7 from "./data/js/Question7";
 export default function App() {
   const jsQuestions = [
     {
