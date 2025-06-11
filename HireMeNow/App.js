@@ -8,6 +8,7 @@ import jsQ4 from "./data/js/Question4";
 import jsQ5 from "./data/js/Question5";
 import jsQ6 from "./data/js/Question6";
 import jsQ7 from "./data/js/Question7";
+import jsQ8 from "./data/js/Question8";
 export default function App() {
   const jsQuestions = [
     {
@@ -42,14 +43,6 @@ export default function App() {
       title: "Q8",
       code: jsQ8,
     },
-    {
-      title: "Q9",
-      code: jsQ9,
-    },
-    {
-      title: "Q10",
-      code: jsQ10,
-    }
   ];
 
   return (
