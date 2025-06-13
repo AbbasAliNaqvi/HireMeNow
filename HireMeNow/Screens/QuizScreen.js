@@ -12,68 +12,168 @@ import {
   StatusBar,
 } from 'react-native';
 
+// Import your actual JavaScript questions
+import jsQ1 from '../data/js/Question1';
+import jsQ2 from '../data/js/Question2';
+import jsQ3 from '../data/js/Question3';
+import jsQ4 from '../data/js/Question4';
+import jsQ5 from '../data/js/Question5';
+import jsQ6 from '../data/js/Question6';
+import jsQ7 from '../data/js/Question7';
+import jsQ8 from '../data/js/Question8';
+
 const { width } = Dimensions.get('window');
 
-const quizData = [
-  {
-    id: 1,
-    question: "What is the output of: console.log(typeof null)?",
-    options: ["null", "undefined", "object", "boolean"],
-    correct: 2,
-    explanation: "In JavaScript, typeof null returns 'object' due to a historical bug that has been kept for backward compatibility."
-  },
-  {
-    id: 2,
-    question: "Which array method creates a new array with all elements that pass a test?",
-    options: ["map()", "filter()", "forEach()", "reduce()"],
-    correct: 1,
-    explanation: "The filter() method creates a new array with all elements that pass the test implemented by the provided function."
-  },
-  {
-    id: 3,
-    question: "How do you create a copy of an object in JavaScript?",
-    options: ["Object.copy(obj)", "obj.clone()", "Object.assign({}, obj)", "obj.duplicate()"],
-    correct: 2,
-    explanation: "Object.assign({}, obj) creates a shallow copy of an object. You can also use the spread operator {...obj}."
-  },
-  {
-    id: 4,
-    question: "What does async/await help with in JavaScript?",
-    options: ["Synchronous operations", "Handling promises", "Variable declaration", "Loop optimization"],
-    correct: 1,
-    explanation: "async/await is syntactic sugar that makes working with promises easier and more readable."
-  },
-  {
-    id: 5,
-    question: "What is the difference between let and const?",
-    options: ["No difference", "let is block-scoped, const is function-scoped", "const cannot be reassigned", "let is faster"],
-    correct: 2,
-    explanation: "Both let and const are block-scoped, but const creates a binding that cannot be reassigned."
-  },
-  {
-    id: 6,
-    question: "Which method is used to add an element to the end of an array?",
-    options: ["append()", "push()", "add()", "insert()"],
-    correct: 1,
-    explanation: "The push() method adds one or more elements to the end of an array and returns the new length."
-  },
-  {
-    id: 7,
-    question: "What does the map() function return?",
-    options: ["The original array", "A new array", "A boolean", "undefined"],
-    correct: 1,
-    explanation: "The map() method creates a new array populated with the results of calling a provided function on every element."
-  },
-  {
-    id: 8,
-    question: "What is a closure in JavaScript?",
-    options: ["A loop structure", "A function with access to outer scope", "An object method", "A variable type"],
-    correct: 1,
-    explanation: "A closure is a function that has access to variables in its outer (enclosing) lexical scope even after the outer function has returned."
-  }
-];
+// Function to generate quiz questions based on your code content
+const generateQuizFromCode = () => {
+  const jsQuestions = [
+    { title: "JavaScript Fundamentals", code: jsQ1 },
+    { title: "Array Methods", code: jsQ2 },
+    { title: "Object Manipulation", code: jsQ3 },
+    { title: "Async Programming", code: jsQ4 },
+    { title: "ES6+ Features", code: jsQ5 },
+    { title: "DOM Manipulation", code: jsQ6 },
+    { title: "Functional Programming", code: jsQ7 },
+    { title: "Advanced Concepts", code: jsQ8 },
+  ];
+
+  // Generate questions based on code content and topics
+  return jsQuestions.map((item, index) => {
+    const codeContent = item.code;
+    
+    // Analyze code content and generate relevant questions
+    let question, options, correct, explanation;
+    
+    switch (index) {
+      case 0: // JavaScript Fundamentals
+        if (codeContent.includes('var') || codeContent.includes('let') || codeContent.includes('const')) {
+          question = `Based on the "${item.title}" code, what's the difference between var, let, and const?`;
+          options = [
+            "They are exactly the same",
+            "var is function-scoped, let and const are block-scoped",
+            "Only const can store numbers",
+            "var is the newest ES6 feature"
+          ];
+          correct = 1;
+          explanation = "var is function-scoped and can be redeclared, while let and const are block-scoped. const cannot be reassigned.";
+        } else {
+          question = `In the "${item.title}" code example, what JavaScript concept is being demonstrated?`;
+          options = [
+            "Variable hoisting and scope",
+            "Object-oriented programming",
+            "Asynchronous programming",
+            "DOM manipulation"
+          ];
+          correct = 0;
+          explanation = "JavaScript fundamentals often cover variable declarations, hoisting, and scope concepts.";
+        }
+        break;
+
+      case 1: // Array Methods
+        question = `Looking at the "${item.title}" code, which method creates a new array without modifying the original?`;
+        options = [
+          "push() and pop()",
+          "map() and filter()",
+          "splice() and sort()",
+          "shift() and unshift()"
+        ];
+        correct = 1;
+        explanation = "map() and filter() are non-mutating methods that return new arrays, while the others modify the original array.";
+        break;
+
+      case 2: // Object Manipulation
+        question = `In the "${item.title}" example, how do you safely copy an object in JavaScript?`;
+        options = [
+          "obj.copy()",
+          "Object.assign({}, obj) or {...obj}",
+          "obj.clone()",
+          "new Object(obj)"
+        ];
+        correct = 1;
+        explanation = "Object.assign({}, obj) and the spread operator {...obj} create shallow copies of objects.";
+        break;
+
+      case 3: // Async Programming
+        question = `Based on the "${item.title}" code, what does async/await help you avoid?`;
+        options = [
+          "Memory leaks",
+          "Callback hell and promise chains",
+          "Variable hoisting",
+          "Type coercion"
+        ];
+        correct = 1;
+        explanation = "async/await provides a cleaner syntax for handling promises and avoids deeply nested callback functions.";
+        break;
+
+      case 4: // ES6+ Features
+        question = `The "${item.title}" code likely demonstrates which ES6+ feature?`;
+        options = [
+          "var declarations",
+          "Arrow functions and destructuring",
+          "document.write()",
+          "eval() statements"
+        ];
+        correct = 1;
+        explanation = "ES6+ introduced arrow functions, destructuring, template literals, and many other modern JavaScript features.";
+        break;
+
+      case 5: // DOM Manipulation
+        question = `In the "${item.title}" example, which method is commonly used to select elements?`;
+        options = [
+          "document.write()",
+          "document.querySelector() or getElementById()",
+          "console.log()",
+          "alert()"
+        ];
+        correct = 1;
+        explanation = "document.querySelector() and getElementById() are the primary methods for selecting DOM elements.";
+        break;
+
+      case 6: // Functional Programming
+        question = `The "${item.title}" code demonstrates which functional programming concept?`;
+        options = [
+          "Imperative loops only",
+          "Higher-order functions and pure functions",
+          "Global variables",
+          "Procedural programming"
+        ];
+        correct = 1;
+        explanation = "Functional programming emphasizes pure functions, higher-order functions, and avoiding side effects.";
+        break;
+
+      case 7: // Advanced Concepts
+        question = `Based on the "${item.title}" code, what advanced JavaScript concept is being shown?`;
+        options = [
+          "Basic variable declaration",
+          "Closures, prototypes, or design patterns",
+          "Simple arithmetic",
+          "String concatenation"
+        ];
+        correct = 1;
+        explanation = "Advanced JavaScript concepts include closures, prototypal inheritance, design patterns, and complex data structures.";
+        break;
+
+      default:
+        question = `What does this code in "${item.title}" demonstrate?`;
+        options = ["Basic syntax", "Advanced concepts", "Error handling", "Performance optimization"];
+        correct = 1;
+        explanation = "This code demonstrates important JavaScript concepts for interview preparation.";
+    }
+
+    return {
+      id: index + 1,
+      title: item.title,
+      code: codeContent,
+      question,
+      options,
+      correct,
+      explanation
+    };
+  });
+};
 
 export default function QuizScreen({ navigation }) {
+  const [quizData] = useState(generateQuizFromCode());
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
@@ -208,6 +308,8 @@ export default function QuizScreen({ navigation }) {
     );
   }
 
+  const currentQuizItem = quizData[currentQuestion];
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#667eea" />
@@ -243,22 +345,40 @@ export default function QuizScreen({ navigation }) {
 
       <ScrollView style={styles.scrollView}>
         <Animated.View style={[styles.questionContainer, { opacity: fadeAnim }]}>
+          {/* Topic Title */}
+          <View style={styles.topicContainer}>
+            <Text style={styles.topicTitle}>📚 {currentQuizItem.title}</Text>
+          </View>
+
+          {/* Code Preview */}
+          <View style={styles.codePreviewContainer}>
+            <Text style={styles.codePreviewTitle}>💻 Related Code:</Text>
+            <ScrollView style={styles.codePreview} nestedScrollEnabled={true}>
+              <Text style={styles.codeText}>
+                {currentQuizItem.code.length > 200 
+                  ? currentQuizItem.code.substring(0, 200) + '...' 
+                  : currentQuizItem.code
+                }
+              </Text>
+            </ScrollView>
+          </View>
+
           {/* Question */}
           <View style={styles.questionBox}>
             <Text style={styles.questionText}>
-              {quizData[currentQuestion].question}
+              {currentQuizItem.question}
             </Text>
           </View>
 
           {/* Options */}
           <View style={styles.optionsContainer}>
-            {quizData[currentQuestion].options.map((option, index) => {
+            {currentQuizItem.options.map((option, index) => {
               let optionStyle = styles.optionButton;
               
               if (answered) {
-                if (index === quizData[currentQuestion].correct) {
+                if (index === currentQuizItem.correct) {
                   optionStyle = [styles.optionButton, styles.correctOption];
-                } else if (index === selectedAnswer && index !== quizData[currentQuestion].correct) {
+                } else if (index === selectedAnswer && index !== currentQuizItem.correct) {
                   optionStyle = [styles.optionButton, styles.incorrectOption];
                 }
               }
@@ -282,7 +402,7 @@ export default function QuizScreen({ navigation }) {
             <Animated.View style={styles.explanationContainer}>
               <Text style={styles.explanationTitle}>💡 Explanation:</Text>
               <Text style={styles.explanationText}>
-                {quizData[currentQuestion].explanation}
+                {currentQuizItem.explanation}
               </Text>
             </Animated.View>
           )}
@@ -362,6 +482,39 @@ const styles = StyleSheet.create({
   },
   questionContainer: {
     padding: 20,
+  },
+  topicContainer: {
+    backgroundColor: '#667eea',
+    padding: 15,
+    borderRadius: 12,
+    marginBottom: 15,
+    alignItems: 'center',
+  },
+  topicTitle: {
+    color: '#ffffff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  codePreviewContainer: {
+    backgroundColor: '#1a1a1a',
+    padding: 15,
+    borderRadius: 12,
+    marginBottom: 20,
+  },
+  codePreviewTitle: {
+    color: '#00ff88',
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  codePreview: {
+    maxHeight: 120,
+  },
+  codeText: {
+    color: '#00ff88',
+    fontFamily: Platform.OS === 'ios' ? 'Menlo' : 'monospace',
+    fontSize: 12,
+    lineHeight: 16,
   },
   questionBox: {
     backgroundColor: '#ffffff',
