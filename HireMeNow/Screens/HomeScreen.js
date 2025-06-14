@@ -18,6 +18,8 @@ import jsQ5 from "../data/js/Question5";
 import jsQ6 from "../data/js/Question6";
 import jsQ7 from "../data/js/Question7";
 import jsQ8 from "../data/js/Question8";
+import jsQ9 from "../data/js/Question9";
+import jsQ10 from "../data/js/Question10";
 
 export default function HomeScreen({ navigation }) {
   const jsQuestions = [
@@ -29,6 +31,8 @@ export default function HomeScreen({ navigation }) {
     { title: "DOM Manipulation", code: jsQ6 },
     { title: "Functional Programming", code: jsQ7 },
     { title: "Advanced Concepts", code: jsQ8 },
+    { title: "Closures & Scopes", code: jsQ9 },
+    { title: "Hoisting & Execution Context", code: jsQ10 },
   ];
 
   return (
